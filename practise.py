@@ -1,48 +1,23 @@
-def selection_sort(arr):
-    # first we find the lowest element in the array 
-    # put it in first position 
-    # and then for the 2nd position and so on 
-    for i in range(len(arr)-1):
-        min = i
-        for j in range(i+1, len(arr)):
-            if arr[min] > arr[j]:
-                min = j
-            
-        arr[min], arr[i] = arr[i], arr[min]
-    
-    return arr
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+times = int(input())
+x = []
+y = []
+for i in range(times):
+    n = random.randint(1,50)
+    t = random.randint(1,50)
+    x.append(n)
+    y.append(t)
+plt.plot(x, y, 'ro')
 
-def bubble_sort(arr):
-    # after the 1st pass we get the largest element on the right side
-    for i in range(len(arr)-1):
-        swapped = False
-        for j in range(len(arr)-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-                swapped = True
-            
-        if swapped == False:
-            return arr
-    return arr
+def connectpoints(x,y,p1,p2):
+    x1, x2 = x[p1], x[p2]
+    y1, y2 = y[p1], y[p2]
+    plt.plot([x1,x2],[y1,y2],'k-')
 
-def insertion_sort(arr):
-    # here we insert the elements in its correct position
-    for i in range(1, len(arr)):
-        x = arr[i]
-        j = i-1
+connectpoints(x,y,0,1)
+connectpoints(x,y,2,3)
 
-        while j >= 0 and x < arr[j]:
-            arr[j+1] = arr[j]
-            j = j-1
-        
-        arr[j+1] = x
-    
-    return arr
-
-
-a = selection_sort([5,1,4,2,5,4,45,5,2,8,54,4])
-b = bubble_sort([5,1,4,2,5,4,45,5,2,8,54,4])
-c = insertion_sort([5,1,4,2,5,4,45,5,2,8,54,4])
-print(a)
-print(b) 
-print(c) 
+plt.axis('equal')
+plt.show()
